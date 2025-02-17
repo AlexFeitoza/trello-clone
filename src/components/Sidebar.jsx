@@ -1,11 +1,14 @@
 //import React from "react";
 import { useState } from "react";
-import { ChevronRight, ChevronLeft, Plus, X } from "react-feather";
+import { ChevronRight, ChevronLeft, Plus, X,  } from "react-feather";
 import { Popover } from "react-tiny-popover";
+import { BoardContext } from "../context/BoardContext";
+import { useContext } from "react";
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [showpop, setShowpop] = useState(false);
+  const [allboard, setAllBoard] = useContext(BoardContext);
 
   return (
     <div
@@ -25,7 +28,9 @@ const Sidebar = () => {
       )}
 
       {!collapsed && (
+
         <div>
+          <p>{JSON.stringify(allboard)}</p>
           <div className="workspace p-3 flex justify-between border-b border-b-[#9fadbc29]">
             <h4>Remote Devs Workspace</h4>
             <button
@@ -42,11 +47,21 @@ const Sidebar = () => {
               
               <Popover
                 isOpen={showpop}
+                align="start"
                 positions={["right","top", "bottom", "left"]} // preferred positions by priority
-                content={<div className="ml-2 p-2 w-60 flex flex-col justify-center items-center bg-slate-500 text-white rounded ">
-                                <button className="absolute right-2 top-2 hover:bg-gray-"><X size={16}></X></button>
-                                <h4>Create Board</h4>
-                        </div>}
+                content={
+                      <div className="ml-2 p-2 w-60 flex flex-col justify-center items-center bg-slate-600 text-white rounded">
+                        <button onClick={() => setShowpop(!showpop)} className="absolute right-2 top-2 hover:bg-gray-500 p-1 rounded"><X size={16}></X></button>
+                        <h4 className=" p-3">Create board</h4>
+                        <img src="https://placehold.co/200x120/png" alt="" />
+                        <div className="mt-3 flex flex-col items-start w-full">
+                            <label htmlFor="title">Board Title <span>*</span></label>
+                            <input type="text" className="mb-2 h-8 px-2 w-full bg-gray-700" />
+                            <label htmlFor="Color">Board Color</label>
+                            <input type="color" className="mb-2 h-8 px-2 w-full bg-gray-700" />
+                            <button className="w-full rounded h-8 bg-slate-700 mt-2 hover:bg-gray-500">Create</button>
+                        </div>
+                      </div>}
               >
                 <button onClick={() => setShowpop(!showpop)} className=" hover:bg-slate-600 p-1 rounded-sm">
                 <Plus size={16}></Plus>
@@ -57,14 +72,17 @@ const Sidebar = () => {
           </div>
 
           <ul>
-            <li>
-              <button className="px-2 py-2 w-full text-sm flex justify-start align-baseline hover:bg-gray-700">
+            {allboard.boards && allboard.boards.map((x)=>{
+              <li>
+              <button className="px-3 py-2 w-full text-sm flex justify-start align-baseline hover:bg-gray-700">
                 <span className="w-6 h-max rounded-sm mr-2 bg-red-600">
                   &nbsp;
                 </span>
                 <span>My Trello Board</span>
               </button>
             </li>
+            })
+            
           </ul>
         </div>
       )}

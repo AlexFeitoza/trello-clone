@@ -30,7 +30,7 @@ const Sidebar = () => {
       {!collapsed && (
 
         <div>
-          <p>{JSON.stringify(allboard)}</p>
+          
           <div className="workspace p-3 flex justify-between border-b border-b-[#9fadbc29]">
             <h4>Remote Devs Workspace</h4>
             <button
@@ -61,7 +61,8 @@ const Sidebar = () => {
                             <input type="color" className="mb-2 h-8 px-2 w-full bg-gray-700" />
                             <button className="w-full rounded h-8 bg-slate-700 mt-2 hover:bg-gray-500">Create</button>
                         </div>
-                      </div>}
+                      </div>
+                      }
               >
                 <button onClick={() => setShowpop(!showpop)} className=" hover:bg-slate-600 p-1 rounded-sm">
                 <Plus size={16}></Plus>
@@ -72,20 +73,21 @@ const Sidebar = () => {
           </div>
 
           <ul>
-            {allboard.boards && allboard.boards.map((x)=>{
-              <li>
+            {allboard.boards && allboard.boards.map((x)=>(
+                <li>
               <button className="px-3 py-2 w-full text-sm flex justify-start align-baseline hover:bg-gray-700">
-                <span className="w-6 h-max rounded-sm mr-2 bg-red-600">
+                <span className="w-6 h-max rounded-sm mr-2 " style={{backgroundColor:`${x.bgcolor}`}}>
                   &nbsp;
                 </span>
-                <span>My Trello Board</span>
+                <span>{x.name}</span>
               </button>
             </li>
             })
-            
+          }    
           </ul>
         </div>
       )}
+      
     </div>
   );
 };

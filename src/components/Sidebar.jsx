@@ -1,9 +1,26 @@
 //import React from "react";
-import { useState } from "react";
+import { useState, useContext, Children } from "react";
 import { ChevronRight, ChevronLeft, Plus, X,  } from "react-feather";
 import { Popover } from "react-tiny-popover";
 import { BoardContext } from "../context/BoardContext";
-import { useContext } from "react";
+import { createContext } from "react";
+
+export const BoardContext = createContext();
+
+export const BoardProvider = ({ children }) =>  {
+  const [allboard, setAllBoard] = useState({
+    boards: [{ name: "Board 1", bgcolor: "#ff5733"}],
+  })
+
+
+return (
+  <BoardContext.Provider value={{ allboard, setAllBoard }}>  
+      {children}
+    </BoardContext.Provider>
+);
+
+};
+
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -73,17 +90,17 @@ const Sidebar = () => {
           </div>
 
           <ul>
-            {allboard.boards && allboard.boards.map((x)=>(
-                <li>
-              <button className="px-3 py-2 w-full text-sm flex justify-start align-baseline hover:bg-gray-700">
+            {allboard.boards && allboard.boards.map((x, index)=>(
+                <li key={index}>
+              <button onClick={()=> setAllBoard} className="px-3 py-2 w-full text-sm flex justify-start align-baseline hover:bg-gray-700">
                 <span className="w-6 h-max rounded-sm mr-2 " style={{backgroundColor:`${x.bgcolor}`}}>
                   &nbsp;
                 </span>
                 <span>{x.name}</span>
               </button>
             </li>
-            })
-          }    
+            ))}
+              
           </ul>
         </div>
       )}
@@ -93,3 +110,5 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
+

@@ -12,6 +12,7 @@ const Main = () => {
           <button className="bg-gray-200 h-8 text-gray-500 px-2 py-1 mr-2 rounded flex justify-center items-center">
             <UserPlus size={16} className="mr-2"></UserPlus>Share
           </button>
+          
           <button className="hover:bg-gray-500 px-2 py-1 h-8 rounded">
             <MoreHorizontal size={16}></MoreHorizontal>
           </button>

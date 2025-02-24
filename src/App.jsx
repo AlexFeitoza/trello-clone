@@ -11,12 +11,12 @@ const App = () => {
     active:0,
     boards:[
       {
-      name:'My Trello Board',
+      name:'Área de Trabalho',
       bgcolor:'#069000',
       list:[
-        {id:"1",title:"To do",items:[{id:"cdrFt",title:"Project Description 1"}]},
-        {id:"2",title:"Progress",items:[{id:"cdrFv",title:"Project Description 2"}]},
-        {id:"3",title:"Done",items:[{id:"cdrFb",title:"Project Description 3"}]}
+        {id:"1",title:"A Fazer",items:[{id:"cdrFt",title:"Projeto Descrição 1"}]},
+        {id:"2",title:"Em Andamento",items:[{id:"cdrFv",title:"Projeto Descrição 2"}]},
+        {id:"3",title:"Feito",items:[{id:"cdrFb",title:"Projeto Descrição 3"}]}
         ]
       }
     ]

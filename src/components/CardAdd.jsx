@@ -25,7 +25,7 @@ const CardAdd = (props) => {
             <>
                <div className="flex flex-col">
                    {show && <div>
-                        <textarea value={card} onChange={(e)=>setCard(e.target.value)} className="p-1 w-full rounded-md border-2 bg-zinc-700 border-zinc-900" name="" id="" cols={30} rows={2} placeholder="enter card title.."></textarea>
+                        <textarea value={card} onChange={(e)=>setCard(e.target.value)} className="p-1 w-full rounded-md border-2 bg-zinc-700 border-zinc-900" name="" id="" cols={30} rows={2} placeholder="insira um título.."></textarea>
                         <div className="flex p-1">
                             <button onClick={()=>saveCard()} className="p-1 rounded bg-sky-600 text-white mr-2 ">Add Card</button>
                             <button onClick={()=> closeBtn()} className="p-1 rounded hover:bg-gray-600"><X size={16}></X></button>

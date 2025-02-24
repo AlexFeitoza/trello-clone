@@ -62,9 +62,9 @@ const Sidebar = () => {
                           <h4 className="py-3">Criar Quadro</h4>
                           <img src="https://placehold.co/200x120/png" alt="" />
                           <div className="mt-3 flex flex-col items-start w-full">
-                                <label htmlFor="title">Board Title <span>*</span></label>
+                                <label htmlFor="title">Título <span>*</span></label>
                                 <input value={boardData.name} onChange={(e)=> setBoarddata({...boardData,name:e.target.value})} type="text" className="mb-2 h-8 px-2 w-full bg-gray-700 "/>
-                                <label htmlFor="Color">Board Color</label>
+                                <label htmlFor="Color">Cor do Quadro</label>
                                 <input value={boardData.bgcolor} onChange={(e)=> setBoarddata({...boardData,bgcolor:e.target.value})} type="color" className="mb-2 h-8 px-2 w-full bg-gray-700 "/>
                                 <button onClick={()=>addBoard()} className="w-full rounded h-8 bg-slate-700 mt-2 hover:bg-gray-500">Criar</button>
                           </div>

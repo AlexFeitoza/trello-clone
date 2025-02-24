@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { Plus, X } from "react-feather"
+import { Plus, X } from "react-feather";
+import PropTypes from "prop-types";
 
 const CardAdd = (props) => {
 
@@ -7,17 +8,17 @@ const CardAdd = (props) => {
     const [show, setShow] = useState(false);
 
     const saveCard = ()=> {
-        if(!card){
+        if(!card.trim){
             return;
         }
         props.getcard(card);
         setCard('')
-        setShow(!show);
+        setShow(prev => !prev);
     }
 
     const closeBtn = () => {
         setCard('');
-        setShow(!show);
+        setShow(prev => !prev);
     }
 
     return (
@@ -38,5 +39,9 @@ const CardAdd = (props) => {
 
     )
 }
+
+CardAdd.propTypes = {
+    getcard: PropTypes.func.isRequired, 
+};
 
 export default CardAdd

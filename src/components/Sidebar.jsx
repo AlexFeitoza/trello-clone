@@ -8,7 +8,7 @@ const Sidebar = () => {
   const blankBoard = {
     name:'',
     bgcolor:'#f60000',
-    items:[]
+    list:[]
   };
   const [boardData,setBoarddata] = useState(blankBoard);
   const [collapsed,setCollapsed] = useState(false);
@@ -84,7 +84,7 @@ const Sidebar = () => {
 
             <ul>
               {allboard.boards && allboard.boards.map((x,i)=>{
-                 return <li>
+                 return <li key={i}>
                   <button onClick={()=>setActiveboard(i)} className="px-3 py-2 w-full text-sm flex justify-start align-baseline hover:bg-gray-600">
                       <span className="w-6 h-max rounded-sm mr-2 style={{backgroundColor:`${x.bgcolor}`}}">&nbsp;</span>
                       <span className=" flex justify-start">{x.name}</span>

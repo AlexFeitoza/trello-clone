@@ -8,7 +8,7 @@ const CardAdd = (props) => {
     const [show, setShow] = useState(false);
 
     const saveCard = ()=> {
-        if(!card.trim){
+        if(!card.trim()){
             return;
         }
         props.getcard(card);

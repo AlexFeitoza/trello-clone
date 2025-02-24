@@ -3,7 +3,7 @@ import { Edit2, MoreHorizontal, UserPlus } from "react-feather";
 import CardAdd from "./CardAdd";
 import { BoardContext } from "../context/BoardContext";
 import { useContext } from "react";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 import AddList from "./AddList";
 import Utils from "../utils/Utils";
 
@@ -39,8 +39,8 @@ const cardData = (e,ind) => {
 
 const listData = (e) => {
   let newList = [...bdata.list];
-  newList.items.push(
-    {id:newList.length + 1 + '',title:e,items:[]}
+  newList.push(
+    {id: newList.length + 1 + '',title: e,items:[]}
   );
 
   let board_ = {...allboard};
@@ -54,8 +54,8 @@ const listData = (e) => {
         <h2 className="text-lg">{bdata.name}</h2>
 
         <div className="flex items-center justify-center ">
-          <button className="bg-gray-200 h-8 text-gray-800 px-2 py-1 mr-2 rounded flex justify-center items-center">
-            <UserPlus size={16} className="mr-2"></UserPlus>Share
+          <button className="bg-gray-200 h-8 text-gray-800 px-2 py-1 mr-2 rounded flex justify-center items-center cursor-pointer">
+            <UserPlus size={16} className="mr-2"></UserPlus>Compartilhar
           </button>
           
           <button className="hover:bg-gray-500 px-2 py-1 h-8 rounded">
@@ -66,7 +66,7 @@ const listData = (e) => {
 
       <div className="flex flex-col w-full flex-grow relative">
         <div className="absolute mb-1 pb-2 left-0 right-0 top-0 bottom-0 p-3 flex overflow-x-scroll overflow-y-hidden ">
-          <DragDropContext onDragEnd={onDragEnd}>
+          <DragDropContext onDragEnd={onDragEnd} isCombineEnabled={false}>
           {bdata.list && bdata.list.map((x,ind)=>{
               return <div key={ind} className="mr-3 w-60 h-fit rounded-md p-2 bg-black flex-shrink-0">
                <div className="list-body">
@@ -77,15 +77,15 @@ const listData = (e) => {
                    </button>
                  </div>
 
-                 <Droppable droppableId={x.id}>
+                 <Droppable droppableId={String(x.id)} isDropDisabled={false}>
                       {(provided, snapshot) => (
                         <div className="py-1 "
                           ref={provided.innerRef}
-                          style={{ backgroundColor: snapshot.isDraggingOver ? '#222' : 'transparent' }}
+                          style={{ backgroundColor: snapshot?.isDraggingOver ? '#222' : 'transparent' }}
                           {...provided.droppableProps}
                         >
-                          {x.items && x.items.map((item,index)=>{
-                            return  <Draggable key={item.id} draggableId={item.id} index={index}>
+                          {x.items && x.items.map((item, index) => (
+                              <Draggable key={item.id} draggableId={String(item.id)} index={index}>
                             {(provided) => (
                               <div
                                 ref={provided.innerRef}
@@ -103,7 +103,7 @@ const listData = (e) => {
                             )}
                           </Draggable>
                            
-                          })}
+                        ))}
 
                           {provided.placeholder}
                         </div>

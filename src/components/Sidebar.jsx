@@ -13,7 +13,7 @@ const Sidebar = () => {
   const [boardData,setBoarddata] = useState(blankBoard);
   const [collapsed,setCollapsed] = useState(false);
   const [showpop,setShowpop] = useState(false);
-  const [allboard,setAllBoard] = useContext(BoardContext);
+  const {allboard,setAllBoard} = useContext(BoardContext);
   const setActiveboard = (i) => {
     let newBoard = {...allboard}
     newBoard.active = i;
@@ -41,7 +41,7 @@ const Sidebar = () => {
            
 
             <div className="workspace p-3 flex justify-between border-b border-b-[#9fadbc29]">
-            <h4>Remote Devs Workspace</h4>
+            <h4>Área de Trabalho</h4>
             <button onClick={()=> setCollapsed(!collapsed)} className="hover:bg-slate-600 rounded-sm p-1">
               <ChevronLeft size={18}></ChevronLeft>
             </button>
@@ -49,7 +49,7 @@ const Sidebar = () => {
 
             <div className="boardlist">
                 <div className="flex justify-between px-3 py-2">
-                    <h6>Your Boards</h6>
+                    <h6>Quadros</h6>
                    
 
                     <Popover
@@ -59,7 +59,7 @@ const Sidebar = () => {
                         content={
                         <div className="ml-2 p-2 w-60 flex flex-col justify-center items-center bg-slate-600 text-white rounded ">
                           <button  onClick={()=> setShowpop(!showpop)} className="absolute right-2 top-2 hover:bg-gray-500 p-1 rounded "><X size={16}></X></button>
-                          <h4 className="py-3">Create Board</h4>
+                          <h4 className="py-3">Criar Quadro</h4>
                           <img src="https://placehold.co/200x120/png" alt="" />
                           <div className="mt-3 flex flex-col items-start w-full">
                                 <label htmlFor="title">Board Title <span>*</span></label>
@@ -86,7 +86,7 @@ const Sidebar = () => {
               {allboard.boards && allboard.boards.map((x,i)=>{
                  return <li key={i}>
                   <button onClick={()=>setActiveboard(i)} className="px-3 py-2 w-full text-sm flex justify-start align-baseline hover:bg-gray-600">
-                      <span className="w-6 h-max rounded-sm mr-2 style={{backgroundColor:`${x.bgcolor}`}}">&nbsp;</span>
+                      <span className="w-6 h-max rounded-sm mr-2" style={{backgroundColor:`${x.bgcolor}`}}>&nbsp;</span>
                       <span className=" flex justify-start">{x.name}</span>
                   </button>
               </li>
